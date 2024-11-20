@@ -1,15 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.array.mavenproject1;
-
 import java.util.Scanner;
-
-/**
- *
- * @author Computer City
- */
 public class Mavenproject1 {
 
     public static void main(String[] args) {
