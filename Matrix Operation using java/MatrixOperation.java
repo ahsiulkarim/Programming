@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.array.mavenproject1;
-
-/**
- *
- * @author Computer City
- */
 public class MatrixOperation { 
      int[][]array1;
      int[][]array2;
