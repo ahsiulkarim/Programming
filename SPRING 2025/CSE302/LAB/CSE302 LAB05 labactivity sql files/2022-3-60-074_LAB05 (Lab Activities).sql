@@ -269,6 +269,9 @@ insert into prereq values ('EE-181', 'PHY-101');
 
 commit;
 
+-- Lab Activities
+-- A. IN/NOT IN 
+-- Find courses offered in Fall 2009 and in Spring 2010
 
 SELECT course_id, title 
 FROM course
@@ -292,7 +295,6 @@ WHERE course_id IN (SELECT course_id
 
 -- Find the total number of (distinct) students who have taken course sections taught by the instructor with ID 10101
 
-
 SELECT COUNT(DISTINCT T.ID) AS num_students
 FROM takes T
 WHERE (T.course_id, T.sec_id, T.semester, T.year) IN (
@@ -300,7 +302,6 @@ WHERE (T.course_id, T.sec_id, T.semester, T.year) IN (
     FROM teaches Te
     WHERE Te.ID = '10101'
 );
-
 
 -- B. SOME/ALL
 -- Find names of instructors with salary greater than that of some (at least one) instructor in the Biology department.
@@ -351,17 +352,18 @@ WHERE EXISTS (SELECT S1.course_id
 SELECT S.ID, S.name
 FROM student S
 WHERE EXISTS (
+    -- Find Biology courses...
     SELECT C.course_id
     FROM course C
     WHERE C.dept_name = 'Biology'
-      AND  EXISTS (
+      AND EXISTS (
+          -- ...that the student S has NOT taken
           SELECT T.course_id
           FROM takes T
           WHERE T.ID = S.ID
-          AND T.course_id = C.course_id
+            AND T.course_id = C.course_id
       )
 );
-
 
 -- Subqueries in the FROM clause
 -- Find the average instructors’ salaries of those departments where the average salary is greater than $42,000
@@ -438,4 +440,3 @@ FROM department D
 LEFT OUTER JOIN instructor I ON D.dept_name = I.dept_name
 GROUP BY D.dept_name
 ORDER BY D.dept_name;
-
